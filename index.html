@@ -9,9 +9,14 @@
     />
     <meta name="theme-color" content="#0B2545" />
     <title>Fluxus | Gestão de saída escolar</title>
+    <script id="standalone-redirect">
+      if (window.location.protocol === "file:") {
+        window.location.replace(new URL("./fluxus.html", window.location.href).href)
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <script type="module" src="./src/main.tsx"></script>
   </body>
 </html>

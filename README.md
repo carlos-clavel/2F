@@ -9,7 +9,15 @@ O projeto é uma aplicação web padrão e não depende do Figma Make para execu
 - Node.js 22 ou superior
 - pnpm 10 (recomendado) ou npm
 
-## Executar no VS Code
+## Opção 1: abrir diretamente no navegador
+
+Abra `fluxus.html` com Chrome, Edge ou Firefox. Esse arquivo contém a aplicação compilada, incluindo JavaScript, CSS e imagens, e não precisa de servidor local.
+
+Também é possível abrir o `index.html` da raiz com duplo clique. Quando acessado pelo protocolo `file://`, ele redireciona automaticamente para `fluxus.html`.
+
+> O `index.html` da raiz é também a entrada de desenvolvimento do Vite. O arquivo `src/main.tsx` não pode ser interpretado diretamente pelo navegador porque usa TypeScript, JSX e imports de pacotes. O Live Server serve arquivos, mas não realiza essa compilação. Por isso, para desenvolver, use o Vite conforme a próxima seção.
+
+## Opção 2: executar no VS Code
 
 1. Abra a pasta do projeto no VS Code.
 2. Abra o terminal integrado.
@@ -33,17 +41,33 @@ Com npm, use `npm install` e `npm run dev`.
 
 ```bash
 pnpm build
+```
+
+Esse comando atualiza duas versões prontas para uso:
+
+- `dist/index.html`: build para publicação, também autônomo;
+- `fluxus.html`: cópia portátil que pode ser aberta com duplo clique ou enviada como um único arquivo.
+
+Para testar o conteúdo de `dist/` em um servidor local:
+
+```bash
 pnpm preview
 ```
 
-O build estático será criado em `dist/`. Essa pasta pode ser publicada em serviços como Vercel, Netlify, Cloudflare Pages, GitHub Pages ou em qualquer servidor de arquivos estáticos.
+A pasta `dist/` pode ser publicada em serviços como Vercel, Netlify, Cloudflare Pages, GitHub Pages ou em qualquer servidor de arquivos estáticos.
 
 Configuração de build:
 
 - comando: `pnpm build`
 - diretório de saída: `dist`
 
-Os assets usam caminhos relativos, permitindo publicar o site tanto na raiz de um domínio quanto em um subdiretório.
+O HTML final incorpora todos os assets locais, permitindo publicar o site na raiz de um domínio, em um subdiretório ou abri-lo diretamente pelo sistema de arquivos.
+
+Para gerar o build convencional do Vite, mantendo JavaScript e CSS em arquivos separados, use:
+
+```bash
+pnpm build:web
+```
 
 ## Verificações
 
@@ -59,4 +83,4 @@ pnpm build
 - Vite
 - Tailwind CSS 4
 
-As fontes Outfit, DM Sans e JetBrains Mono são carregadas pelo Google Fonts. Portanto, a interface precisa de acesso à internet para usar essas fontes; se estiver offline, utiliza as fontes alternativas do sistema.
+As fontes Outfit, DM Sans e JetBrains Mono são carregadas pelo Google Fonts. Se o computador estiver offline, a aplicação continua funcional e utiliza as fontes alternativas do sistema.
